@@ -1,4 +1,5 @@
-## Efficient Utilization of Spark Pools 
+## Synapse Genie Framework
+**Efficient Utilization of Spark Pools**
 
 ![image](https://user-images.githubusercontent.com/45026856/198976270-7c8437db-ebf3-4590-86ba-4407edac39c1.png)
 
