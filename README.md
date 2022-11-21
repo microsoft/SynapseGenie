@@ -67,8 +67,7 @@ In Genie Framework , All Notebooks run with the same spark context and spark ses
 
 
 **For Scala Notebook**:
-![image](https://user-images.githubusercontent.com/45026856/198977147-d097e8e6-b5f2-468a-8e95-f6ceee671462.png)
-
+![MicrosoftTeams-image (4)](https://user-images.githubusercontent.com/99250812/203032176-fa97e4ec-b181-4314-98bd-229a4e65881d.png)
 
 ## Any statistics or cost savings 
 
