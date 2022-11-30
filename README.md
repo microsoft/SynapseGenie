@@ -1,7 +1,7 @@
 ## Synapse Genie Framework
 **Efficient Utilization of Spark Pools**
 
-![image](https://user-images.githubusercontent.com/45026856/198976270-7c8437db-ebf3-4590-86ba-4407edac39c1.png)
+<img width="324" alt="GenieNewLamp" src="https://user-images.githubusercontent.com/45026856/204741903-7e972b55-e48a-46f0-8962-0cd6c606b461.png">
 
  ## What is Genie Framework?
 
