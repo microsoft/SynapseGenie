@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
 from concurrent.futures import ThreadPoolExecutor
 from concurrent.futures import as_completed
 from concurrent.futures import wait
