@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
 import re
 from concurrent.futures import wait
 import concurrent.futures
