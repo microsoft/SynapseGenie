@@ -15,7 +15,10 @@ class GenieRunNotebook:
                         start = datetime.now(self.tz)
                         notebook = self.prop[notebookid].notebookname
                         print(f"[{start}] Execution of {notebookid} started")
-                        self.spark.sql(f"""Insert into genie.log values('{self.pipelinerunid}','{notebookid}','in progress','{start}',NULL,NULL,'notebook') """)
+                        try:
+                            self.spark.sql(f"""Insert into genie.log values('{self.pipelinerunid}','{notebookid}','in progress','{start}',NULL,NULL,'notebook') """)
+                        except Exception as e:
+                            self.spark.sql(f"""Insert into genie.log values('{self.pipelinerunid}','{notebookid}','in progress','{start}',NULL,NULL,'notebook') """)
                         if self.prop[notebookid].notebookparams is not None and self.prop[notebookid].notebookparams != "":
                             msg = self.msspark.run(notebook,self.cellTimeoutInSeconds,json.loads(self.prop[notebookid].notebookparams))
                         else:
@@ -28,7 +31,10 @@ class GenieRunNotebook:
                         end = datetime.now(self.tz)
                         #Escape error messages for sql
                         msg = self.removeSingleQuotes(msg)
-                        self.spark.sql(f"""Insert into genie.log values('{self.pipelinerunid}','{notebookid}','{status}','{start}','{end}','{msg}','notebook') """)
+                        try:
+                            self.spark.sql(f"""Insert into genie.log values('{self.pipelinerunid}','{notebookid}','{status}','{start}','{end}','{msg}','notebook') """)
+                        except Exception as e:
+                            self.spark.sql(f"""Insert into genie.log values('{self.pipelinerunid}','{notebookid}','{status}','{start}','{end}','{msg}','notebook') """)
                         if status=="success":
                             break
                         if i!= retry:
