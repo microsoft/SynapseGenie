@@ -180,8 +180,8 @@ class Genie(GenieRunNotebook, GenieScheduler, GenieMetadataHelper):
 
 
     def visualizeGraph(self, pipeline):
-        st = GenieMetadataHelper()
-        self.metadatarows = st.getStorageMetaData(pipeline,"start","")
+        # st = GenieMetadataHelper()
+        self.metadatarows = self.getStorageMetaData(self.spark, pipeline,"start","")
         self.initializeGraph()
         graph = nx.drawing.nx_pydot.to_pydot(self.graph)
         graph.set_rankdir("LR")
@@ -194,11 +194,7 @@ class Genie(GenieRunNotebook, GenieScheduler, GenieMetadataHelper):
             self.pipelineName = pipelineName
             self.pipelinerunid = uuid.uuid4() if runID=="" else runID          
             
-            # The following commented line is for implicitly getting the value of "state" variable 
-            # based on "runID" and "triggerType" parameters. Currently disabled.
-            
-            # runStatus = self.getRunStatus(runStatus,triggerType)
-            
+            #runStatus = self.getRunStatus(runStatus,triggerType)
             prevRunID = ""
             # print(runStatus,triggerType)   
             if runStatus=="start" or runStatus == "restart":
@@ -216,8 +212,10 @@ class Genie(GenieRunNotebook, GenieScheduler, GenieMetadataHelper):
                 self.initializeZeros(runStatus)
             else:
                 raise Exception(f"Invalid parameter={runStatus} for state. Acceptable values are 'Start', 'Restart' or empty string.")
-            
-            self.spark.sql(f"""Insert into genie.log values('{self.pipelinerunid}','{pipelineName}','in progress','{start}',NULL,NULL,'pipeline') """)
+            try:
+                self.spark.sql(f"""Insert into genie.log values('{self.pipelinerunid}','{pipelineName}','in progress','{start}',NULL,NULL,'pipeline') """)
+            except Exception as e:
+                self.spark.sql(f"""Insert into genie.log values('{self.pipelinerunid}','{pipelineName}','in progress','{start}',NULL,NULL,'pipeline') """)
 
             self.scheduler(runStatus)
             end = datetime.now(self.tz)
@@ -227,7 +225,10 @@ class Genie(GenieRunNotebook, GenieScheduler, GenieMetadataHelper):
                 self.spark.sql(f"""Insert into genie.log values('{self.pipelinerunid}','{self.pipelineName}','{status}','{start}','{end}','{msg}','pipeline') """)
                 print(f"No notebooks executed for {self.pipelineName}. All were successful in last run.")
             else:
-                self.spark.sql(f"""Insert into genie.log values('{self.pipelinerunid}','{self.pipelineName}','{status}','{start}','{end}','{self.fail_msg}','pipeline') """)
+                try:
+                    self.spark.sql(f"""Insert into genie.log values('{self.pipelinerunid}','{self.pipelineName}','{status}','{start}','{end}','{self.fail_msg}','pipeline') """)
+                except Exception as e:
+                    self.spark.sql(f"""Insert into genie.log values('{self.pipelinerunid}','{self.pipelineName}','{status}','{start}','{end}','{self.fail_msg}','pipeline') """)
         
         except Exception as e:
             raise Exception(f"[{self.pipelineName}] Error in Execute function. Error- "+str(e)) from e
