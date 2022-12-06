@@ -5,14 +5,14 @@
 
  ## What is Genie Framework?
 
-Genie Framework improves Spark Pool utilization by executing multiple Synapse notebooks on the same spark pool instance. It takes into account the sequence and dependencies between Notebook activities in an ETL pipeline. It ensures efficient usage of full cluster of resources available in a spark pool .
+Genie Framework improves Spark Pool utilization by executing multiple Synapse notebooks on the same spark pool instance. It takes into account the sequence and dependencies between Notebook activities in an ETL pipeline. It results in higher usage of full cluster of resources available in a spark pool .
 
 ## When to use Genie Framework?
 
-Genie Framework is highly helpful when you have a set of related notebooks that are part of a Synapse pipeline. In any group of notebooks, the workload varies from small to large. By executing such varied workloads on a single spark pool instance we can improve the resource utilization and reduce spark pool costs.
+Genie Framework is helpful when you have a set of related notebooks that are part of a Synapse pipeline. In any group of notebooks, the workload varies from small to large. By executing such varied workloads on a single spark pool instance we can improve the resource utilization and reduce spark pool costs.
 It is also ideal to execute Notebooks through Genie framework when the workloads are a mix of CPU and IO intensive operations.
 
-During development of a Data Application in Synapse, we tend to develop multiple notebooks for a pipeline. This is likely due to multiple developers working on tasks independently or due to different transformation logic required to process different datasets. In such a case the workload per notebook is mixed . Some notebooks have a small workload and others have large workloads. When these notebooks are invoked from a pipeline, each notebook spins up a separate spark pool and reserves these nodes till the execution is complete.  This results in additional cost, Execution time and inefficient usage of pool resources. Even a small notebook with few lines of code reserves at least 2 nodes and incurs cost for spin up, execution and de allocation time. 
+During development of a Data Application in Synapse, we tend to develop multiple notebooks for a pipeline. This is likely due to multiple developers working on tasks independently or due to different transformation logic required to process different datasets. In such a case the workload per notebook is mixed . Some notebooks have a small workload and others have large workloads. When these notebooks are invoked from a pipeline, each notebook spins up a separate spark pool and reserves these nodes till the execution is complete.  This results in additional cost, Execution time and inefficient usage of pool resources. Even a small notebook with few lines of code reserves at least 2 nodes and incurs cost for spin up, execution and de allocation time. Genie Framework utility tries to avoid this by attempting to run all notebooks on a single spark context. 
 
 ## How does Genie Framework work?
 
@@ -30,9 +30,8 @@ Sample graph screenshot that Genie builds for its execution.
 ## What are the Capabilities of Genie Framework?
 
 - Metadata driven orchestration of notebooks 
-- Supports easy onboarded to replace any ADF/Synapse pipeline which has only Notebook activities and Sub-Pipelines.
+- Supports easy onboarding to replace any ADF/Synapse pipeline which has only Notebook activities and Sub-Pipelines.
 - Configurable retry/restart mechanism for failed notebooks.
-- Easy debugging with execution trace.
 - Error messages logged for future verification and run telemetry.
 - Notebook activation/removal from pipeline through metadata.
 - Ability to pass parameters to notebooks similar to pipeline activity
@@ -40,7 +39,7 @@ Sample graph screenshot that Genie builds for its execution.
 
  **Benefits**
 
-- Significant increase in spark pool utilization and reduction in execution times\Costs.
+- Increased spark pool utilization and reduction in execution times\Costs.
 - Eliminates the need to configure node types and sizes per notebook.
 - Enable notebook activation\removal from pipeline through metadata.
 - Enable global views , UDFs etc., usage across notebooks.
@@ -50,13 +49,13 @@ Sample graph screenshot that Genie builds for its execution.
 ## Ok , I am in! How do I onboard?
 Genie Framework consists of a Python Wheel package and a Synapse Notebook.
 Notebook information is stored as Metadata for the framework and the wrapper notebook is to be invoked through a Synapse pipeline. 
-For detailed instructions about onboarding \installation of the framework to your Synapse workspace, please go through the onboarding document for Genie Framework.
+For detailed instructions about onboarding \installation of the framework to your Synapse workspace, please go through the [onboarding document](https://github.com/microsoft/SynapseGenie/blob/main/Onboarding.md) for Genie Framework.
 
 ## What should you watch out for ?
 
 **Note**: Genie Framework is not an official tool of Azure Synapse Product. And will not be officially supported by Synapse. It is a sample utility developed independently and to be considered as an Example of how notebooks can be run on the same instance of spark pool.
 
-This Framework is not ideal for notebooks which use parallel threading heavily and run-on very large datasets (in TB’s). It is better suited when we have a mix of small and large workloads as mentioned in the when to use Genie framework section.
+This Framework is not ideal for notebooks which use parallel threading heavily and run-on very large datasets (in TB’s). It is better suited when we have a mix of small and large workloads as mentioned in the when to use Genie framework section above.
 
 
 **Session isolation**
@@ -70,17 +69,19 @@ In Genie Framework , All Notebooks run with the same spark context and spark ses
 
 ![MicrosoftTeams-image (4)](https://user-images.githubusercontent.com/99250812/203032176-fa97e4ec-b181-4314-98bd-229a4e65881d.png)
 
-## Any statistics or cost savings 
+Using the Synapse Genie utility can reduce execution time of your pipeline, there by reducing the overall costs. One can try and reduce the Spark pool node sizes to verify if the workload can be run on smaller cluster as all spark pool resources are available for the master genie notebook.
 
-In our test observations, when notebooks were run in parallel through Genie framework , we could observe a rise of 50 % in Executor utilization , when compared to running directly in a pipeline with isolated resources. 
-
-The above tests also resulted in reduced execution time or reduction in spark pool size, that has reduced our spark pool costs significantly
-
-**Note**: These statistics are only for a sample individual run , the actual savings may vary greatly based on your own workload .
-
+## Roadmap 
+ - Provide Session isolation without code changes on the client side
+ - Ability to trigger restart of a Genie instance run from a Datafactory\Synapse pipeline
+ - Simplify Onboarding to Genie to Support Bulk onboarding
 
 ## Appendix
 
 For more on [optimizing spark jobs on Synapse](https://learn.microsoft.com/en-us/azure/synapse-analytics/spark/apache-spark-performance#optimize-job-execution) 
 
 Run [notebooks with threadpool](https://learn.microsoft.com/en-us/azure/synapse-analytics/spark/microsoft-spark-utilities?pivots=programming-language-python#notebook-utilities)
+
+Code repository: [Synapse Genie GitHub](https://github.com/microsoft/SynapseGenie)
+
+[Onboard Genie steps](https://github.com/microsoft/SynapseGenie/blob/main/Onboarding.md)
