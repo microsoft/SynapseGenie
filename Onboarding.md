@@ -2,16 +2,16 @@
 
 **Pre-Requisites:**
 
-  Access to Synapse Workspace
+1) Access to Synapse Workspace
 
-  Access to Data Lake Storage Account, with Blob Storage Contributor access or above
+2) Access to Data Lake Storage Account, with Blob Storage Contributor access or above
 
-  Download below files from the Repo location
+3) Download below files from the Repo location
 
-      i) Genie Package – Contains code for the framework
-      ii) Genie Wrapper file - Template that contains the required code to run the framework
-      iii) Schema files for tables required by the framework
-      iv) SQL scripts for creating views based on logs (Requires serverless SQL)
+   i) Genie Package – Contains code for the framework
+   ii) Genie Wrapper file - Template that contains the required code to run the framework
+   iii) Schema files for tables required by the framework
+   iv) SQL scripts for creating views based on logs (Requires serverless SQL)
     
 **Steps to Onboard:**
 
