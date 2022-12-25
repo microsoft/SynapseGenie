@@ -4,21 +4,41 @@
 
    1) Access to Synapse Workspace
    2) Access to Data Lake Storage Account, with Blob Storage Contributor access or above
-   3) Download below files from the Repo location
+   3) Download below files from the Repo location (https://github.com/microsoft/SynapseGenie/tree/main/utilities)
+   
       i) Genie Package – Contains code for the framework
+      
       ii) Genie Wrapper file - Template that contains the required code to run the framework
+      
       iii) Schema files for tables required by the framework
+      
       iv) SQL scripts for creating views based on logs (Requires serverless SQL)
+    
     
 **Steps to Onboard:**
 
-    i) Download the above-mentioned files from the repo.
-    ii) Upload the genie package (.whl file) in the spark pool/workspace.
-    iii) Run one-time Genie metadata table creation script (Schema.txt). Store the metadata for pipelines in this table.
-    iv) Also, run one-time scripts for creating tables and views for Genie logging (GenieLogViewCreate / GenieLogSP_create/ GenieLogSP).
-    v) Set the Spark configuration for the Wrapper notebook. (optional)
-    vi) Configure the parameters for the framework in the Wrapper notebook.
-    vii) Execute the framework.
+ i) Files from the repo are required (https://github.com/microsoft/SynapseGenie/tree/main/utilities) .
+ 
+ ii) Upload the genie package (.whl file) in the spark pool/workspace.
+ <img width="718" alt="image" src="https://user-images.githubusercontent.com/99250812/209457623-b2ff8b2a-4f4d-45dd-b070-693eb34098bf.png">
+ 
+ iii) Run one-time Genie metadata table creation script (**genie_schema.ipynb**). Store the metadata for pipelines in this table.
+ 
+ iv) Also, run one-time scripts for creating tables and views for Genie logging (GenieLogViewCreate / GenieLogSP_create/ GenieLogSP).
+ <img width="311" alt="image" src="https://user-images.githubusercontent.com/99250812/209457705-80342daa-8039-4f19-a850-add070e9ee53.png">
+ 
+ v) Set the Spark configuration for the Wrapper notebook. (optional)
+ 
+ <img width="459" alt="image" src="https://user-images.githubusercontent.com/99250812/209457735-d71f8d00-e07f-4b9b-aa48-a5abb7285fbc.png">
+
+ vi) Configure the parameters for the framework in the Wrapper notebook.
+ 
+ <img width="444" alt="image" src="https://user-images.githubusercontent.com/99250812/209457970-a8cf7a3c-5ab4-4e04-8838-274bcd9bad44.png">
+
+ vii) Execute the framework.
+ 
+ <img width="379" alt="image" src="https://user-images.githubusercontent.com/99250812/209457975-5b867760-41ad-4f41-8229-b0c3e3bdc019.png">
+
     
 **Metadata Onboard:**
 
