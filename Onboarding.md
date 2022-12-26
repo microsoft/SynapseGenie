@@ -35,12 +35,14 @@
  
  <img width="444" alt="image" src="https://user-images.githubusercontent.com/99250812/209457970-a8cf7a3c-5ab4-4e04-8838-274bcd9bad44.png">
 
- vii) Execute the framework.
+ vii) Execute the framework with below command. Wrapper notebook containingthis execute command can be scheduled for daily through a Synapse pipeline. This Notebook executes all the other notebooks through the Genie framework
  
  <img width="379" alt="image" src="https://user-images.githubusercontent.com/99250812/209457975-5b867760-41ad-4f41-8229-b0c3e3bdc019.png">
 
     
 **Metadata Onboard:**
+
+Metadata can be loaded manually into the Genie Metadata table through insert scripts. Else, we can convert an existing pipeline into genie metadata through below steps
 
     i) Download all Json files of the Master pipeline (including Sub pipeline activities)
     ii) Place Json files in a Container of Data Lake Storage Account.
