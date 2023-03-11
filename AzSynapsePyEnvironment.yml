@@ -1,0 +1,11 @@
+name: root
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - graphviz
+  - pip:
+    - PGPy
+    - azure-keyvault
+    - graphviz
+    - pydot
