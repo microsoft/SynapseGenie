@@ -38,6 +38,11 @@
  vii) Execute the framework with below command. Wrapper notebook containingthis execute command can be scheduled for daily through a Synapse pipeline. This Notebook executes all the other notebooks through the Genie framework
  
  <img width="379" alt="image" src="https://user-images.githubusercontent.com/99250812/209457975-5b867760-41ad-4f41-8229-b0c3e3bdc019.png">
+ 
+ viii) Please add the yml file (https://github.com/microsoft/SynapseGenie/blob/main/AzSynapsePyEnvironment.yml) into the Requirements section of Synapse Spark Pool, as per below Snapshot
+ 
+ <img width="525" alt="image" src="https://user-images.githubusercontent.com/99250812/224483117-cb5dd854-ca09-4e35-ac42-ad11e3b2be46.png">
+
 
     
 **Metadata Onboard:**
