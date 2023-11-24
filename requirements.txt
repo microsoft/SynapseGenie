@@ -1,5 +1,5 @@
 graphviz==0.20.1
-ipython==8.6.0
+ipython==8.10.0
 networkx==2.8.6
 pydot==1.4.2
 pytz==2022.2.1
