@@ -15,6 +15,7 @@ class GenieMetadata:
     retryintervalinseconds: str
     start: str
 
+#This Class is useful to fetch the Metadata from Genie Database and Metadata Table
 class GenieMetadataHelper:
     def metaDataParser(self, collection):
         return  [GenieMetadata(row['id'],row['name'],row['Dependencies'],row['Type'],row['status'],row['params'],row['retry'],row['retryintervalinseconds'],row['start']) for row in collection]
